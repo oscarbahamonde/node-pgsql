@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  db: &db
+    image: postgres:latest
+    volumes:
+      - ~/app/postgres/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=db
+      - POSTGRES_CONNECTION_STRING=postgres://user:password@db:5432/db
+    ports:
+      - "5432:5432"
+    networks:
+      - default
+    restart: always
